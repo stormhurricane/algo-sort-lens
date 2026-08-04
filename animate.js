@@ -1,7 +1,10 @@
 export async function playAnimation(algorithm){
+    const startTime = performance.now();
+
     let queue = algorithm.animation;
     const container = document.querySelector("#" + algorithm.container);
     const bars = container.querySelectorAll(".bar");
+    const stat_container = container.querySelector(".stats_container");
 
     for (const event of queue){
         bars.forEach((bar) => {
@@ -17,6 +20,9 @@ export async function playAnimation(algorithm){
                 indices = event.indices;
                 bars[indices[0]].classList.add("comparing");
                 bars[indices[1]].classList.add("comparing");
+                let compare_span = stat_container.querySelector(".stat_compare");
+                let compares = parseInt(compare_span.textContent);
+                compare_span.textContent = ++compares;
                 break;
             case "SWAP":
                 indices = event.indices;
@@ -26,6 +32,9 @@ export async function playAnimation(algorithm){
                 let height_help = bars[indices[0]].style.height;
                 bars[indices[0]].style.height = bars[indices[1]].style.height;
                 bars[indices[1]].style.height = height_help;
+                let swap_span = stat_container.querySelector(".stat_swap");
+                let swaps = parseInt(swap_span.textContent);
+                swap_span.textContent = ++swaps;
                 break;
 
             case "SORTED":
@@ -33,9 +42,25 @@ export async function playAnimation(algorithm){
                 break;
         }
 
+        let timestamp = performance.now();
+        let time_span = stat_container.querySelector(".stat_time");
+        time_span.textContent = formatTime(timestamp - startTime);
         await sleep(100);
     }
 
+    const endTime = performance.now();
+    let time_span = stat_container.querySelector(".stat_time");
+    time_span.textContent = formatTime(endTime - startTime);
+
+}
+
+function formatTime(ms){
+    if(ms < 1000){
+        return `${Math.round(ms)} ms`;
+    }
+    else{
+        return `${(ms / 1000).toFixed(2)} s`;
+    }
 }
 
 function sleep(ms){

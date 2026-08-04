@@ -37,6 +37,25 @@ function createBarChart(algorithm){
     }
     sort_container.append(chart_container);
 
+    let stats_container = document.createElement("div");
+    stats_container.className = "stats_container";
+    stats_container.innerHTML = `
+        <div class="stat_card">
+            <span class="stat_label">Comparisons</span>
+            <strong class="stat_compare">0</strong>
+        </div>
+        <div class="stat_card">
+            <span class="stat_label">Swaps</span>
+            <strong class="stat_swap">0</strong>
+        </div>
+        <div class="stat_card">
+            <span class="stat_label">Time</span>
+            <strong class="stat_time">0 ms</strong>
+        </div> 
+    `;
+
+    sort_container.append(stats_container);
+
     document.querySelector('.main_container').append(sort_container);
 }
 
