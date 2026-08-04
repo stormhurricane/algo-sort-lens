@@ -35,6 +35,11 @@ function partition(array, queue, start, end){
         }
     }
 
+    if(left > end){
+        left = end;
+    }
+
+
     array[end] = array[left];
     array[left] = pivot_value;
     queue.push({type: "SWAP", indices: [left, end]});
@@ -44,8 +49,11 @@ function partition(array, queue, start, end){
 }
 
 function quick_sort(array, start, end, queue = []){
-    if(start >= end) {
+    if(start == end) {
         queue.push({ type: "SORTED", index: start });
+        return queue;
+    }
+    if(start > end){
         return queue;
     }
 
