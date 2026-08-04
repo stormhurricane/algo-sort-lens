@@ -2,9 +2,10 @@ import { array, max_value } from "./array_generator.js";
 import { bubblesort } from "./bubblesort.js";
 import { playAnimation } from "./animate.js";
 import { quicksort } from "./quicksort.js";
+import { selectionsort } from "./selectionsort.js";
 
 async function main(){
-    let algorithms = [bubblesort, quicksort];
+    let algorithms = [bubblesort, quicksort, selectionsort];
     for (const algorithm of algorithms){
         createBarChart(algorithm);
     }
