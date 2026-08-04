@@ -1,46 +1,161 @@
 <script type="module" src="main.js"></script> 
  
 <style>
-    .main_container{
-        display: grid;
-        grid-template-columns: repeat(2, 1fr); /* 2 Spalten nebeneinander */
-        gap: 20px;
+    :root {
+        --bg-main: #0F172A;        /* Dunkler Gesamthintergrund */
+        --bg-card: #1E293B;        /* Karten-Hintergrund */
+        --bg-chart: #090D16;       /* Chart-Hintergrund */
+        --bg-stat: #334155;        /* Stats-Card Hintergrund */
+        --border-color: #334155;   /* Rahmenelemente */
+        
+        --text-primary: #F8FAFC;   /* Haupttext */
+        --text-secondary: #94A3B8; /* Nebentext/Labels */
+        
+        /* Bar-Farben */
+        --bar-default: #475569;
+        --bar-compare: #F59E0B;
+        --bar-swap: #EF4444;
+        --bar-sorted: #10B981;
+    }
+
+    /* Globales Dark-Mode Setup */
+    body {
+        background-color: var(--bg-main);
+        color: var(--text-primary);
+        font-family: system-ui, -apple-system, sans-serif;
+        margin: 0;
         padding: 20px;
     }
 
-    .chart_container{
+    h1 {
+        text-align: center;
+        margin-bottom: 24px;
+        color: var(--text-primary);
+    }
+
+    /* Control Panel Style */
+    .control_panel {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 16px;
+        background-color: var(--bg-card);
+        padding: 16px;
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+        max-width: 800px;
+        margin: 0 auto 24px auto;
+    }
+
+    .control_panel button {
+        background-color: #3B82F6;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 6px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+
+    .control_panel button:hover {
+        background-color: #2563EB;
+    }
+
+    .control_panel label {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+    }
+
+    /* Layout Grid */
+    .main_container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    /* Algorithmus Kachel */
+    .algorithm_container {
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 20px;
+        background-color: var(--bg-card);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+    }
+
+    .algorithm_container h2 {
+        margin-top: 0;
+        margin-bottom: 12px;
+        font-size: 1.2rem;
+        color: var(--text-primary);
+    }
+
+    /* Chart Canvas */
+    .chart_container {
         display: flex;
         align-items: flex-end;
         height: 200px;
         padding: 10px;
         gap: 2px;
-    }
-
-    .algorithm_container {
-        border: 1px solid #ccc;
+        background-color: var(--bg-chart);
         border-radius: 8px;
-        padding: 15px;
-        background-color: #fafafa;
+        border: 1px solid var(--border-color);
     }
 
-    .bar{
+    /* Balken & Status */
+    .bar {
         flex: 1;
-        background-color: #4A5568;
+        background-color: var(--bar-default);
         border-radius: 2px 2px 0 0;
-        /* border: 1px solid black; */
         transition: background-color 0.05s ease;
     }
 
-    .comparing{
-        background-color: #F6AD55 !important;
+    .comparing {
+        background-color: var(--bar-compare) !important;
     }
 
     .sorted {
-        background-color: #38A169 !important;
+        background-color: var(--bar-sorted) !important;
     }
 
     .swapping {
-        background-color: #E53E3E !important;
+        background-color: var(--bar-swap) !important;
+    }
+
+    /* Stats Footer */
+    .stats_container {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        margin-top: 16px;
+    }
+
+    .stat_card {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: var(--bg-stat);
+        padding: 8px 12px;
+        border-radius: 6px;
+        border: 1px solid var(--border-color);
+    }
+
+    .stat_label {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--text-secondary);
+        margin-bottom: 4px;
+    }
+
+    .stat_compare,
+    .stat_swap,
+    .stat_time {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        font-family: monospace;
     }
 
 </style>
