@@ -3,9 +3,10 @@ import { bubblesort } from "./bubblesort.js";
 import { playAnimation } from "./animate.js";
 import { quicksort } from "./quicksort.js";
 import { selectionsort } from "./selectionsort.js";
+import { insertionsort } from "./insertionsort.js";
 
 async function main(){
-    let algorithms = [bubblesort, quicksort, selectionsort];
+    let algorithms = [bubblesort, quicksort, selectionsort, insertionsort];
     for (const algorithm of algorithms){
         createBarChart(algorithm);
     }
