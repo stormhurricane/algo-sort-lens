@@ -1,9 +1,10 @@
 import { array, max_value } from "./array_generator.js";
 import { bubblesort } from "./bubblesort.js";
 import { playAnimation } from "./animate.js";
+import { quicksort } from "./quicksort.js";
 
 async function main(){
-    let algorithms = [bubblesort];
+    let algorithms = [bubblesort, quicksort];
     for (const algorithm of algorithms){
         let sort_container = document.createElement('div');
         sort_container.className = 'algorithm_container';
