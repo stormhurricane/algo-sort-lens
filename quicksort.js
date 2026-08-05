@@ -1,7 +1,9 @@
-import { array } from "./array_generator.js";
+// import { array } from "./array_generator.js";
 
 export const quicksort = {
-    animation: quick_sort([...array], 0, array.length - 1),
+    fn: (arr) => quick_sort([...arr], 0, arr.length -1),
+    array: [],
+    animation: [],
     name: "Quick Sort",
     container: "quickSortContainer",
 };

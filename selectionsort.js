@@ -1,7 +1,9 @@
-import { array } from "./array_generator.js";
+// import { array } from "./array_generator.js";
 
 export const selectionsort = {
-    animation: selection_sort([...array]),
+    fn: (arr) => selection_sort([...arr]),
+    array: [],
+    animation: [],
     name: "Selection Sort",
     container: "selectionSortContainer",
 };

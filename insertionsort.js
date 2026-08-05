@@ -1,7 +1,9 @@
-import { array } from "./array_generator.js";
+// import { array } from "./array_generator.js";
 
 export const insertionsort = {
-    animation: insertion_sort([...array]),
+    fn: (arr) => insertion_sort([...arr]),
+    array: [],
+    animation: [],
     name: "Insertion Sort",
     container: "insertionSortContainer",
 };

@@ -1,7 +1,7 @@
-import { array } from "./array_generator.js";
-
 export const bubblesort = {
-    animation: bubble_sort([...array]),
+    fn: (arr) => bubble_sort([...arr]),
+    array: [],
+    animation: [],
     name: "Bubble Sort",
     container: "bubbleSortContainer",
 };
