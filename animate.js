@@ -45,7 +45,11 @@ export async function playAnimation(algorithm){
         let timestamp = performance.now();
         let time_span = stat_container.querySelector(".stat_time");
         time_span.textContent = formatTime(timestamp - startTime);
-        await sleep(100);
+
+        let slider = document.querySelector("#speed_slider");
+        let sleep_time = parseInt(slider.attributes.max.textContent) - slider.value;
+        
+        await sleep(sleep_time);
     }
 
     const endTime = performance.now();
