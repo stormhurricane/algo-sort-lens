@@ -7,7 +7,11 @@ import { insertionsort } from "./insertionsort.js";
 
 const algorithms = [bubblesort, quicksort, selectionsort, insertionsort];
 let max;
-let isRunning = false;
+const state = {
+    isRunning: false,
+    isCanceled: false,
+    isPaused: false,
+};
 
 
 function init() {
@@ -17,11 +21,14 @@ function init() {
 }
 
 function setupData(dataObj) {
+    rename_startButton("Start");
     max = dataObj.max;
     for (const algorithm of algorithms) {
         algorithm.array = [...dataObj.arr];
         algorithm.animation = algorithm.fn(algorithm.array);
     }
+
+    document.querySelector("#speed_slider").value = document.querySelector("#speed_slider").attributes.value.textContent;
 }
 
 function main(){
@@ -44,17 +51,23 @@ function createBarCharts(){
 }
 
 async function startAnimation(){
-    if (isRunning) return;
-    isRunning = true;
+    if (state.isRunning) return;
+    state.isRunning = true;
+    rename_startButton("Pause");
 
     let animationPromises = [];
     for(const algorithm of algorithms){
-        animationPromises.push(playAnimation(algorithm));
+        animationPromises.push(playAnimation(algorithm, state));
     }
 
     await Promise.all(animationPromises);
 
-    isRunning = false;
+    state.isRunning = false;
+    rename_startButton("Start");
+}
+
+function rename_startButton(text){
+    document.querySelector("#btn_start").textContent = text;
 }
 
 function createBarChart(algorithm){
@@ -101,15 +114,27 @@ function createBarChart(algorithm){
 
 createBarCharts();
 
-document.getElementById("btn_start").onclick = startAnimation;
+document.getElementById("btn_start").onclick = () => {
+    if(!state.isRunning){
+        startAnimation();
+    }
+    else{
+        state.isPaused = !state.isPaused;
+        rename_startButton(state.isPaused ? "Continue" : "Pause");
+    }
+};
 
 document.getElementById("btn_generate").onclick = () => {
-    if(isRunning) return;
+    if(state.isRunning) {
+        state.isCanceled = true;
+        state.isRunning = false;
+    }
 
     const new_arr = create_ancestor_array();
     setupData(new_arr);
 
     createBarCharts();
+    state.isCanceled = false;
 };
 
 init();

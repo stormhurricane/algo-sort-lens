@@ -1,4 +1,4 @@
-export async function playAnimation(algorithm){
+export async function playAnimation(algorithm, state){
     const startTime = performance.now();
 
     let queue = algorithm.animation;
@@ -7,6 +7,15 @@ export async function playAnimation(algorithm){
     const stat_container = container.querySelector(".stats_container");
 
     for (const event of queue){
+        if (state.isCanceled) {
+            return;
+        }
+
+        while (state.isPaused) {
+            if (state.isCanceled) return; 
+            await sleep(50);
+        }
+
         bars.forEach((bar) => {
         
             bar.classList.remove("comparing");
