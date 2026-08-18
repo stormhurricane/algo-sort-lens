@@ -43,3 +43,32 @@ Eine zentrale Asynchron-Funktion liest die erzeugte Queue der Reihe nach aus. Si
 | **Selection Sort** | $\mathcal{O}(n^2)$ | Sucht sequenziell das Minimum und setzt es an die vorderste freie Position. |
 | **Insertion Sort** | $\mathcal{O}(n^2)$ | Sortiert Elemente wie Spielkarten fortlaufend in den linken Teilbereich ein. |
 | **Merge Sort** | $\mathcal{O}(n \log n)$ | Rekursives Teilen und zusammenführen sortierter Teil-Arrays (Divide & Conquer). |
+
+
+---
+
+## 🔮 Roadmap & Zukünftige Features
+
+Um den pädagogischen Wert und das Feedback des Visualizers weiter auszubauen, sind folgende Erweiterungen in der Entwicklung:
+
+### 🎵 Audio-Synthese (Sonifikation)
+- **Web Audio API:** Zuweisung einer spezifischen Tonfrequenz (z. B. 200 Hz – 800 Hz) basierend auf der Balkenhöhe.
+- **Akustisches Feedback:** Generierung von Sinustönen bei `COMPARE`- und `SWAP`-Events zur akustischen Veranschaulichung des Sortierfortschritts.
+
+### 🎲 Szenario-Generierung & Stresstests
+- **Datenverteilungen:** Vordefinierte Array-Konfigurationen zur Analyse von Best-Case und Worst-Case-Verhalten:
+  - *Umgekehrt sortiert (Reverse / Worst-Case)*
+  - *Nahezu sortiert (Nearly Sorted)*
+  - *Wenige eindeutige Werte (Few Unique / Duplikate)*
+- **Dynamisches $N$:** Slider zur Anpassung der Elementanzahl (z. B. 10 bis 200 Balken).
+
+### ⏯️ Schritt-für-Schritt Steuerung (Step-by-Step)
+- **Frame-Navigation:** `Step-Forward`- und `Step-Backward`-Buttons zum manuellen Durchschalten der Event-Queue.
+- **Inverses Rendering:** Rückwärts-Traversierung macht Swaps und Markierungen im DOM präzise rückgängig.
+
+### 📝 Synchrones Code-Highlighting
+- **Pseudocode-Panel:** Nebenstehende Anzeige des jeweiligen Algorithmus-Codes.
+- **Zeilen-Synchronisierung:** Kopplung der Event-Queue an Zeilenindizes (`{ type: "COMPARE", line: 4 }`) für ein Aufleuchten der aktiven Codezeile im UI.
+
+### 📈 Benchmark- & Komplexitäts-Analyse
+- **Visueller Vergleich:** Nach Abschluss aller Sortiervorgänge wird ein zusammenfassendes Diagramm eingeblendet, das die gemessenen Operationen (Vergleiche, Tausche, Rechenzeit) direkt gegenüberstellt.
